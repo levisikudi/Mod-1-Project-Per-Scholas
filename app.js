@@ -8,7 +8,19 @@ class Ship{
     }
 //make an attack method    
     attackShip(){
+        //if the accuracy is of the USS ship is above the accuracy of the enemy ship, it is a hit and hull is deducted
+        if(myShip.accuracy >= this.accuracy){
+            console.log(myShip);
+            this.hull -= myShip.firepower
+            console.log(this.name + " is the item");
+            console.log("The ship has been hit");
+            console.log(this.hull + " is the hull of " + this.name);
 
+        } else if (myShip.accuracy < this.accuracy){
+            console.log("This ship survives");
+            myShip.hull -= this.firepower
+            console.log(this.hull + " is the hull of " + this.name);
+        }
     }
 }
 
@@ -41,6 +53,10 @@ enemyShips.addShip("Ship 5")
 enemyShips.addShip("Ship 6")
 
 console.log(enemyShips);
+enemyShips.ships[0].attackShip();
+console.log(enemyShips.ships[0]);
+
+
 
 
 
