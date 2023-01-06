@@ -8,21 +8,25 @@ class Ship{
     }
 //make an attack method    
     attackShip(){
-        //if the accuracy is of the USS ship is above the accuracy of the enemy ship, it is a hit and hull is deducted
+        
         if(myShip.accuracy >= this.accuracy){
             console.log(myShip);
             this.hull -= myShip.firepower
-            console.log(this.name + " is the item");
-            console.log("The ship has been hit");
+            console.log(this.name + " HAS BEEN HIT");
             console.log(this.hull + " is the hull of " + this.name);
-
-        } else if (myShip.accuracy < this.accuracy){
-            console.log("This ship survives");
+            
+        } else if ((Math.random() * 0.2 + 0.6).toFixed(1) < this.accuracy){
             myShip.hull -= this.firepower
+            console.log("USS HAS BEEN HIT");
+            console.log(myShip);
+            
             console.log(this.hull + " is the hull of " + this.name);
-        }
+        }  
     }
+//make a retreat function    
 }
+
+
 
 let myShip = new Ship("USS HelloWorld", 20, 5,0.7)
 console.log(myShip);
@@ -44,6 +48,9 @@ class Fleet{
     }
 }
 
+// make a retreat function
+
+
 let enemyShips = new Fleet("Enemy Ships");
 enemyShips.addShip("Ship 1")
 enemyShips.addShip("Ship 2")
@@ -56,8 +63,40 @@ console.log(enemyShips);
 enemyShips.ships[0].attackShip();
 console.log(enemyShips.ships[0]);
 
+// make a start game function 
+const startGame = () =>{
+    enemyShips.ships.forEach(ship => {
+        let i = 0
+        
+        while (i < 6) {
+          if (myShip.hull <= 0) {
+            console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
+            
+            break
+          }
+          ship.attackShip()
+          console.log(ship)
+          if (ship.hull <= 0) { break }
+          i++
+        }
+      })
+
+
+}
+startGame()
+
+//make a new game function
 
 
 
 
 
+
+
+  
+    // set a variable that keeps count of my hitpoints
+    // create a while loop that iterates over the alien ships as long as my hitpoints are above 0. If they go below zero, break and make it game over
+    // create a for each loop
+    // attack each ship until the hitpoints are 0
+    // update the hitpoint variable
+  
