@@ -62,16 +62,20 @@ enemyShips.addShip("Ship 5")
 enemyShips.addShip("Ship 6")
 
 console.log(enemyShips);
-enemyShips.ships[0].attackShip();
-console.log(enemyShips.ships[0]);
 
 // make a start game function 
-const startGame = () =>{
+const battle = () =>{
+
+    
+
+    
+    // set each ship's properties
+    
+
+
     enemyShips.ships.forEach(ship => {
-        // initialize counter
-        
-        //
         while (ship.hull >= 0) {
+            let i = 0;
           if (myShip.hull <= 0) {
             console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
             
@@ -80,13 +84,27 @@ const startGame = () =>{
           ship.attackShip()
           console.log(ship)
           if (ship.hull <= 0) { break }
-          
+          //update ship[i]'s stats
         }
       })
 
 
 }
-startGame()
+
+const reset = () =>{
+    //create an array that holds each hull attribute. Set to 0
+    let arr = []
+
+
+    // for each hull, update its value to its correspondin js number
+    
+
+    let alienhull3 = document.getElementById("hull3")
+    alienhull3.textContent = enemyShips.ships[2].hull
+}
+reset()
+
+   
 
 //make a new game function
 
