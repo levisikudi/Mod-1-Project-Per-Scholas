@@ -11,19 +11,21 @@ class Ship{
         
         if(myShip.accuracy >= this.accuracy){
             console.log(myShip);
+            // subtract points from alienship
             this.hull -= myShip.firepower
             console.log(this.name + " HAS BEEN HIT");
             console.log(this.hull + " is the hull of " + this.name);
             
         } else if ((Math.random() * 0.2 + 0.6).toFixed(1) < this.accuracy){
+            //subtract points from my hull
             myShip.hull -= this.firepower
+            this.accuracy -= 0.025
             console.log("USS HAS BEEN HIT");
             console.log(myShip);
             
             console.log(this.hull + " is the hull of " + this.name);
         }  
     }
-//make a retreat function    
 }
 
 
@@ -66,9 +68,10 @@ console.log(enemyShips.ships[0]);
 // make a start game function 
 const startGame = () =>{
     enemyShips.ships.forEach(ship => {
-        let i = 0
+        // initialize counter
         
-        while (i < 6) {
+        //
+        while (ship.hull >= 0) {
           if (myShip.hull <= 0) {
             console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
             
@@ -77,7 +80,7 @@ const startGame = () =>{
           ship.attackShip()
           console.log(ship)
           if (ship.hull <= 0) { break }
-          i++
+          
         }
       })
 
