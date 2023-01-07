@@ -65,14 +65,7 @@ console.log(enemyShips);
 
 // make a start game function 
 const battle = () =>{
-
-    
-
-    
     // set each ship's properties
-    
-
-
     enemyShips.ships.forEach(ship => {
         while (ship.hull >= 0) {
             let i = 0;
@@ -91,22 +84,27 @@ const battle = () =>{
 
 }
 
-const reset = () =>{
-    //create an array that holds each hull attribute. Set to 0
-    let arr = []
+
+let enemyhull = document.querySelectorAll('.hull')
+let enemyfire = document.querySelectorAll('.fire')
+let enemyaccuracy = document.querySelectorAll('.accuracy')
 
 
-    // for each hull, update its value to its correspondin js number
+console.log(enemyhull);
+
+
+
+const updateStat = () =>{
+    enemyShips.ships.forEach((ship,i) => {
+        enemyhull[i].textContent += ship.hull
+        enemyfire[i].textContent += ship.firepower
+        enemyaccuracy[i].textContent += ship.accuracy
+    });
     
-
-    let alienhull3 = document.getElementById("hull3")
-    alienhull3.textContent = enemyShips.ships[2].hull
+    
 }
-reset()
 
-   
-
-//make a new game function
+updateStat()
 
 
 
@@ -114,10 +112,19 @@ reset()
 
 
 
-  
-    // set a variable that keeps count of my hitpoints
-    // create a while loop that iterates over the alien ships as long as my hitpoints are above 0. If they go below zero, break and make it game over
-    // create a for each loop
-    // attack each ship until the hitpoints are 0
-    // update the hitpoint variable
-  
+// const updateStat = (enemyStatList, stat) =>{
+//     enemyShips.ships.forEach((ship,i) => {
+//         if(stat == "hull"){
+//             enemyStatList[i].textContent += ship.hull
+//         }else if(stat == "fire"){
+//             enemyStatList[i].textContent += ship.firepower
+//         }else{
+//             enemyStatList[i].textContent += ship.accuracy
+//         }
+//         console.log(enemyStatList[i]);
+//     });
+// }
+
+// updateStat(enemyhull, "hull")
+// updateStat(enemyfire, "fire")
+// updateStat(enemyaccuracy, "accuracy")
