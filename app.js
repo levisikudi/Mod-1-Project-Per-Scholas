@@ -1,4 +1,8 @@
 //make a class that creates ships
+let startButton = document.querySelector(".start-button")
+let everything = document.querySelector(".everything")
+
+
 class Ship{
     constructor(name, hull, firepower, accuracy){
         this.name = name;
@@ -33,6 +37,8 @@ class Ship{
 let myShip = new Ship("USS HelloWorld", 20, 5,0.7)
 console.log(myShip);
 
+
+
 //make a factory which holds alien ships
 class Fleet{
     constructor(className){
@@ -64,27 +70,6 @@ enemyShips.addShip("Ship 6")
 console.log(enemyShips);
 
 // make a start game function 
-const battle = () =>{
-    // set each ship's properties
-    enemyShips.ships.forEach(ship => {
-        while (ship.hull >= 0) {
-            let i = 0;
-          if (myShip.hull <= 0) {
-            console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
-            
-            break
-          }
-          ship.attackShip()
-          console.log(ship)
-          if (ship.hull <= 0) { break }
-          //update ship[i]'s stats
-        }
-      })
-
-
-}
-
-
 let enemyhull = document.querySelectorAll('.hull')
 let enemyfire = document.querySelectorAll('.fire')
 let enemyaccuracy = document.querySelectorAll('.accuracy')
@@ -95,16 +80,43 @@ console.log(enemyhull);
 
 
 const updateStat = () =>{
+
+
     enemyShips.ships.forEach((ship,i) => {
-        enemyhull[i].textContent += ship.hull
-        enemyfire[i].textContent += ship.firepower
-        enemyaccuracy[i].textContent += ship.accuracy
+        enemyhull[i].textContent = ship.hull
+        enemyfire[i].textContent = ship.firepower
+        enemyaccuracy[i].textContent = ship.accuracy
     });
     
     
 }
-
 updateStat()
+const battle = () =>{
+    // set each ship's properties
+    enemyShips.ships.forEach(ship => {
+        while (ship.hull >= 0) {
+          if (myShip.hull <= 0) {
+            console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
+            break
+          }
+          ship.attackShip()
+          console.log(ship)
+          if (ship.hull <= 0) { break }
+          //update ship[i]'s stats
+        }
+      })
+}
+
+
+
+battle()
+
+const startGame = () =>{
+   startButton.classList.add("hidden")
+   everything.classList.remove("hidden")
+
+}
+
 
 
 

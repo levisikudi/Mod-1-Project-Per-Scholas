@@ -23,6 +23,56 @@ body{
     padding: 0;
     z-index: -1;
 }
+
+.start-button{
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: rgb(230, 184, 184);
+  cursor: pointer;
+  display: block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: normal;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 60%;
+  margin: 15rem auto;
+  will-change: transform;
+}
+
+.start-button:disabled {
+  pointer-events: none;
+}
+
+.start-button:hover {
+  color: #fff;
+  background-color: rgba(26, 26, 26, 0.4);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.start-button:active {
+  box-shadow: none;
+  transform: translateY(0);
+  background-color: hsl(0, 44%, 48%);
+}
+    
+.hidden{
+    display: none;
+    visibility: hidden;
+}
 .everything{
     display: grid;
     grid-template-columns: 1fr 4fr;
