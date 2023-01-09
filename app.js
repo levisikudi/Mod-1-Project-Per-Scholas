@@ -146,6 +146,7 @@ let enemyShipImg = document.querySelectorAll('.enemy_img')
 console.log(enemyhull);
 
 
+
 const timer = ms => new Promise(res => setTimeout(res, ms))
 
 const battle =  async () => {
@@ -157,11 +158,14 @@ const battle =  async () => {
 
     for (let i = 0; 0 < eachEnShip.length - 1; i++) {
         
+
+        await timer(2000);
+
         console.log("LOSE : "+lose)
         counter = 0;
         if(!lose){
             let value = prompt("Do you wish to battle the next ship?","Press 'y' to continue and any other key to abort")
-            if(!value.toLowerCase == "y" ){
+            if(!value.toLowerCase === "y" ){
                 reload()
             }
             counter++
@@ -170,8 +174,7 @@ const battle =  async () => {
         
         while(eachEnShip[i].hull > 0){
             if (enemyShips.ships[5] < 0){
-                gameReset()
-                resultMessage.textContent = "YOU WIN!"
+                
             }
                 if (myShip.hull <= 0) {
                   console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
@@ -194,14 +197,13 @@ const battle =  async () => {
                 }
                   
               }
-
-              
-
-              
-              await timer(2000);
-        
+              if (enemyShips.ships[5].hull <= 0  ){
+                gameReset()
+                resultMessage.textContent = "YOU WIN!"
+            }
     }
 }
+
 
 
 
