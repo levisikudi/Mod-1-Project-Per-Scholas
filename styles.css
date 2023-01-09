@@ -5,13 +5,15 @@ body{
     background-color: #1D1D1D;
     color:aliceblue;
     font-size: 1em;
-    
+    font-family: 'Black Ops One', cursive;
 }
 #title{
     margin: 50px auto;
     text-align: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    font-family: 'Press Start 2P', cursive;
 }
+
 .wrapper {
     position: fixed;
     top: 0;
@@ -62,6 +64,7 @@ body{
   width: 60%;
   margin: 15rem auto;
   will-change: transform;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .start-button:disabled {

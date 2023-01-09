@@ -5,6 +5,7 @@ let reset = document.querySelector(".reset")
 let resultMessage = document.getElementById('result-message')
 let reReset = document.getElementById('re-reset')
 
+
 const updateStat = () =>{
     myhull.textContent = "Hull: " + myShip.hull;
     myfire.textContent = "Firepower: " + myShip.firepower;
@@ -162,13 +163,12 @@ const battle =  async () => {
         await timer(2000);
 
         console.log("LOSE : "+lose)
-        counter = 0;
-        if(!lose){
-            let value = prompt("Do you wish to battle the next ship?","Press 'y' to continue and any other key to abort")
-            if(!value.toLowerCase === "y" ){
+        
+        if(!lose ){
+            let value = prompt("Do you wish to battle the next ship?","Press Enter to proceed or nothing to abort")
+            if(!value){
                 reload()
             }
-            counter++
           }
          
         
