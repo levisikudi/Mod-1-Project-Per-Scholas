@@ -24,7 +24,9 @@
         </div>
     </section>
     
-    <button class="start-button" onclick="startGame()">START GAME</button>
+        <button class="start-button" onclick="startGame()">START GAME</button>
+
+        
     
 
     <div class="everything hidden">
@@ -32,9 +34,9 @@
         <div class="uss">
             <img src="./images/USS_Ship.png" id="uss-ship" alt="USS HelloWorld">
             <h1>USS HelloWorld</h1>
-            <h3 id="myHull">Hull:</h3>
-            <h3 id="myfire">Firepower:</h3>
-            <h3 id="myAccuracy">Accuracy:</h3>
+            <h3 id="myHull"></h3>
+            <h3 id="myfire"></h3>
+            <h3 id="myAccuracy"></h3>
         </div>
         
         <section class="enemy_ships">
@@ -86,8 +88,14 @@
                 <h3 class="accuracy">Accuracy: </h3>
                 
             </div>
+            
         </section>
     </div>
     
+    <div class="hidden reset">
+        <span id="result-message">YOU LOSE</span>
+        <button class="start-button" onclick="reload()">PLAY AGAIN</button>
+    </div>
+
 </body>
 </html>

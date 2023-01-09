@@ -1,6 +1,26 @@
 //make a class that creates ships
 let startButton = document.querySelector(".start-button")
 let everything = document.querySelector(".everything")
+let reset = document.querySelector(".reset")
+let resultMessage = document.getElementById('result-message')
+
+const updateStat = () =>{
+    myhull.textContent = "Hull: " + myShip.hull;
+    myfire.textContent = "Firepower: " + myShip.firepower;
+    myAccuracy.textContent = "Accuracy: " + myShip.accuracy;
+
+    
+    enemyShips.ships.forEach((ship,i) => {
+        enemyhull[i].textContent = "Hull: " + ship.hull
+        enemyfire[i].textContent = "Firepower: " + ship.firepower
+        enemyaccuracy[i].textContent = "Accuracy: " + ship.accuracy
+    });
+    
+    
+}
+
+
+
 
 
 class Ship{
@@ -16,7 +36,10 @@ class Ship{
         if(myShip.accuracy >= this.accuracy){
             console.log(myShip);
             // subtract points from alienship
+
             this.hull -= myShip.firepower
+            //update stats
+            updateStat()
             console.log(this.name + " HAS BEEN HIT");
             console.log(this.hull + " is the hull of " + this.name);
             
@@ -24,11 +47,14 @@ class Ship{
             //subtract points from my hull
             myShip.hull -= this.firepower
             this.accuracy -= 0.025
+            // update stats
+            updateStat()
             console.log("USS HAS BEEN HIT");
             console.log(myShip);
             
             console.log(this.hull + " is the hull of " + this.name);
         }  
+        
     }
 }
 
@@ -56,6 +82,35 @@ class Fleet{
     }
 }
 
+const startGame = () =>{
+    startButton.classList.add("hidden")
+    everything.classList.remove("hidden")
+    updateStat()
+    setTimeout(() => {
+        let value = prompt("Press any lettered key to start")
+    if(!value ==""){
+        battle()
+    } else (
+        alert("invalid text")
+    )
+    }, 2000);
+
+    
+
+
+ }
+
+ const reload = () =>{
+    location.reload()
+ }
+
+const gameReset = () =>{
+    reset.classList.remove('hidden')
+    everything.classList.add('hidden')
+    everything.classList.remove('everything')
+    
+}
+
 // make a retreat function
 
 
@@ -74,48 +129,65 @@ let enemyhull = document.querySelectorAll('.hull')
 let enemyfire = document.querySelectorAll('.fire')
 let enemyaccuracy = document.querySelectorAll('.accuracy')
 
+let myhull = document.getElementById('myHull')
+let myfire = document.getElementById('myfire')
+let myAccuracy = document.getElementById('myAccuracy')
+
+
 
 console.log(enemyhull);
 
-
-
-const updateStat = () =>{
-
-
-    enemyShips.ships.forEach((ship,i) => {
-        enemyhull[i].textContent = ship.hull
-        enemyfire[i].textContent = ship.firepower
-        enemyaccuracy[i].textContent = ship.accuracy
-    });
-    
-    
-}
-updateStat()
-const battle = () =>{
+let eachEnShip = enemyShips.ships
+const timer = ms => new Promise(res => setTimeout(res, ms))
+const battle =  async () => {
     // set each ship's properties
-    enemyShips.ships.forEach(ship => {
-        while (ship.hull >= 0) {
-          if (myShip.hull <= 0) {
-            console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
-            break
-          }
-          ship.attackShip()
-          console.log(ship)
-          if (ship.hull <= 0) { break }
-          //update ship[i]'s stats
-        }
-      })
+    let lose = 0
+    let eachEnShip = enemyShips.ships
+
+    for (let i = 0; 0 < eachEnShip.length; i++) {
+        
+
+       
+            while (eachEnShip[i].hull >= 0) {
+                if (myShip.hull <= 0) {
+                  console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
+                  lose += 1
+                  break
+                }
+                
+                  eachEnShip[i].attackShip()
+                 
+                  console.log(eachEnShip[i])
+                  
+              }
+       
+              await timer(3000);
+        
+
+    }
+
+
+
+
+
+    // enemyShips.ships.forEach( (ship) => {
+        
+        
+        
+    //   })
+    //   if(lose > 0){
+    //     resultMessage.textContent= "YOU LOST"
+    //     gameReset()
+    //     console.log("you lost");
+    //   } else{
+    //     resultMessage.textContent= "YOU WON"
+    //     gameReset()
+    //     console.log("you won");
+    //   }
 }
 
 
 
-battle()
-
-const startGame = () =>{
-   startButton.classList.add("hidden")
-   everything.classList.remove("hidden")
-
-}
 
 
 
@@ -124,19 +196,15 @@ const startGame = () =>{
 
 
 
-// const updateStat = (enemyStatList, stat) =>{
-//     enemyShips.ships.forEach((ship,i) => {
-//         if(stat == "hull"){
-//             enemyStatList[i].textContent += ship.hull
-//         }else if(stat == "fire"){
-//             enemyStatList[i].textContent += ship.firepower
-//         }else{
-//             enemyStatList[i].textContent += ship.accuracy
-//         }
-//         console.log(enemyStatList[i]);
-//     });
+
+// if (win){
+//     gameReset()
+// } else{
+//     gameReset()
+//     resultMessage.textContent = "YOU WIN!"
+
 // }
 
-// updateStat(enemyhull, "hull")
-// updateStat(enemyfire, "fire")
-// updateStat(enemyaccuracy, "accuracy")
+
+
+

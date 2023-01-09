@@ -91,6 +91,9 @@ body{
     width: 200px;
     
 }
+.reset{
+    display: block;
+}
 
 .uss{
     align-self: center;
