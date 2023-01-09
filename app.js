@@ -3,11 +3,13 @@ let startButton = document.querySelector(".start-button")
 let everything = document.querySelector(".everything")
 let reset = document.querySelector(".reset")
 let resultMessage = document.getElementById('result-message')
+let reReset = document.getElementById('re-reset')
 
 const updateStat = () =>{
     myhull.textContent = "Hull: " + myShip.hull;
     myfire.textContent = "Firepower: " + myShip.firepower;
     myAccuracy.textContent = "Accuracy: " + myShip.accuracy;
+
 
     
     enemyShips.ships.forEach((ship,i) => {
@@ -35,6 +37,7 @@ class Ship{
         
         if(myShip.accuracy >= this.accuracy){
             console.log(myShip);
+            updateStat()
             // subtract points from alienship
 
             this.hull -= myShip.firepower
@@ -85,19 +88,20 @@ class Fleet{
 const startGame = () =>{
     startButton.classList.add("hidden")
     everything.classList.remove("hidden")
-    updateStat()
+    reReset.classList.remove('hidden')
+    reReset.style.margin = "0 auto"
+    reReset.style.padding = "auto"
+    
     setTimeout(() => {
         let value = prompt("Press any lettered key to start")
     if(!value ==""){
+        
         battle()
     } else (
-        alert("invalid text")
+        alert("Invalid text. Kindly Reset")
     )
     }, 2000);
-
-    
-
-
+    updateStat()
  }
 
  const reload = () =>{
@@ -107,7 +111,9 @@ const startGame = () =>{
 const gameReset = () =>{
     reset.classList.remove('hidden')
     everything.classList.add('hidden')
-    everything.classList.remove('everything')
+    everything.classList.remove
+    ('everything')
+    reReset.classList.add('hidden')
     
 }
 
@@ -133,57 +139,68 @@ let myhull = document.getElementById('myHull')
 let myfire = document.getElementById('myfire')
 let myAccuracy = document.getElementById('myAccuracy')
 
+let enemyShipImg = document.querySelectorAll('.enemy_img')
+
 
 
 console.log(enemyhull);
 
-let eachEnShip = enemyShips.ships
+
 const timer = ms => new Promise(res => setTimeout(res, ms))
+
 const battle =  async () => {
     // set each ship's properties
     let lose = 0
     let eachEnShip = enemyShips.ships
+    
+    
 
-    for (let i = 0; 0 < eachEnShip.length; i++) {
+    for (let i = 0; 0 < eachEnShip.length - 1; i++) {
         
-
-       
-            while (eachEnShip[i].hull >= 0) {
+        console.log("LOSE : "+lose)
+        counter = 0;
+        if(!lose){
+            let value = prompt("Do you wish to battle the next ship?","Press 'y' to continue and any other key to abort")
+            if(!value.toLowerCase == "y" ){
+                reload()
+            }
+            counter++
+          }
+         
+        
+        while(eachEnShip[i].hull > 0){
+            if (enemyShips.ships[5] < 0){
+                gameReset()
+                resultMessage.textContent = "YOU WIN!"
+            }
                 if (myShip.hull <= 0) {
                   console.log(" THE USS HAS BEEN COMPLETELY AND UTTERLY DESTROYED")
                   lose += 1
-                  break
-                }
-                
+                  gameReset()
+                console.log("you lost");
+                  break;
+                } 
+                    // attack ship
                   eachEnShip[i].attackShip()
-                 
                   console.log(eachEnShip[i])
+
+
+                  // change enemy ship image
+                  if(myShip.hull <= 0){break}
+                  enemyShipImg[i].src = "./images/enemy_ship_dead.png"
+                  if (enemyShips.ships[5] < 0){
+                    gameReset()
+                    resultMessage.textContent = "YOU WIN!"
+                }
                   
               }
-       
-              await timer(3000);
-        
 
+              
+
+              
+              await timer(2000);
+        
     }
-
-
-
-
-
-    // enemyShips.ships.forEach( (ship) => {
-        
-        
-        
-    //   })
-    //   if(lose > 0){
-    //     resultMessage.textContent= "YOU LOST"
-    //     gameReset()
-    //     console.log("you lost");
-    //   } else{
-    //     resultMessage.textContent= "YOU WON"
-    //     gameReset()
-    //     console.log("you won");
-    //   }
 }
 
 
@@ -197,8 +214,10 @@ const battle =  async () => {
 
 
 
+
+
 // if (win){
-//     gameReset()
+//    
 // } else{
 //     gameReset()
 //     resultMessage.textContent = "YOU WIN!"

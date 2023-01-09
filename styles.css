@@ -23,6 +23,18 @@ body{
     padding: 0;
     z-index: -1;
 }
+#result-message{
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    align-items: center;
+    
+    text-align: center;
+    
+    font-size: 3rem;
+    color: rgb(230, 198, 198);
+    background-color: transparent;
+}
 
 .start-button{
   appearance: none;
